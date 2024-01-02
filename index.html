@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100 w-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="global.css"> -->
+
+    <title>EL</title>
+    <style>
+        html {
+            cursor: none;
+        }
+
+        a {
+            cursor: none;
+        }
+
+        #mini-cursor {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            z-index: 51;
+            pointer-events: none;
+            position: absolute;
+            background-color: #f1d5d6;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        #cursor {
+            background-color: white;
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            z-index: 50;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            transition: top 0.1s, left 0.1s;
+            transform: translate(-50%, -50%);
+        }
+
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-color: #f1d5d6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+
+        #container {
+            background-color: #3b363e;
+            width: 800px;
+            height: 70%;
+        }
+
+        #container h1{
+            background-color: #f1d5d6;
+            color: #151417;
+            width: default;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            padding: 5px 10px 5px 10px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:active {
+            text-decoration: none;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 3px 3px 1px #3b363e;
+        }
+
+        .main {
+            height: 100vh;
+            flex: 1;
+            background-color: #f1d5d6;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #container a {
+            color: #151417;
+            width: default;
+        }
+
+        #container h1{
+            background-color: #f1d5d6;
+            width: fit-content
+        }
+
+        #container h2{
+            background-color: #f1d5d6;
+            width: fit-content;
+            min-width: 8rem;
+            font-family: 'Poppins', sans-serif;
+            padding: 2px;
+            margin: 10px;
+        }
+
+        .second {
+            height: 100vh;
+            flex: 1;
+            background-color: #3b363e;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .content {
+            flex-direction: column;
+            height: 100%;
+            width: 100vw;
+        }
+
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        #form-wrapper {
+            background-color: #fcfbfb;
+            width: 800px;
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 3px 3px 1px #fcfbfb;
+        }
+
+        .form-item {
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            width: 50%;
+        }
+
+        .form-item input{
+            border: 0;
+            background: #f1d5d6;
+            font-size: 1rem;
+            padding: 0.5rem;
+            cursor: none;
+        }
+
+        .no-outline:focus {
+            outline: none;
+        }
+
+        label {
+            cursor: none;
+        }
+
+        
+        .form-item textarea {
+            font-size: 1rem;
+            padding: 0.5rem;
+            background: #f1d5d6;
+            border: 0;
+            resize: none;
+            font-family: 'Poppins', sans-serif;
+            cursor: none;
+        }
+
+        .form-item h4 {
+            margin-bottom: 0;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="mini-cursor"></div>
+
+    <div class="content">
+        <div class="main">
+            <div id="container">
+                <h1 class="">EL</h1>
+                <nav>
+                    <div class="link"><a href="https://88potatoes.github.io/projectlist/"><h2>Projects</h2></a></div>
+                    <div class="link"><a href="https://ericlang.online/"><h2>Blog</h2></a></div>
+                    <div class="link contact-button"><h2>Contact</h2></div>
+                </nav>
+
+            </div>
+        </div>
+        
+        <div class="second">
+            <div id="form-wrapper">
+                <form id="contact-form" action="http://127.0.0.1:8001/contact" method="POST">
+                    <div class="form-item">
+                        <label for="fullname">Name</label>
+                        <input type="text" name="fullname" id="fullname" class="no-outline" required>
+                    </div>
+                    <div class="form-item"> 
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="no-outline" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="enquiry">Enquiry</label>
+                        <textarea rows="10" class="no-outline" name="enquiry"></textarea>
+                    </div>
+                    <div class="form-item">
+                        <input type="submit" value="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.getElementById("cursor")
+        const minicursor = document.getElementById('mini-cursor')
+        
+        window.addEventListener('mousemove', (e) => {
+            window.requestAnimationFrame(() => {
+                cursor.style.left = `${e.pageX}px`;
+                cursor.style.top = `${e.pageY}px`;
+                minicursor.style.left = `${e.pageX}px`;
+                minicursor.style.top = `${e.pageY}px`;
+
+            });
+        })
+
+        const contactButton = document.querySelector('.contact-button')
+        const contactForm = document.getElementById('contact-form')
+
+        contactButton.addEventListener('click', (e) => {
+            console.log('clicked')
+            e.preventDefault();
+            contactForm.scrollIntoView({behavior: "smooth"})
+        })
+    </script>
+</body>
+</html>
