@@ -46,6 +46,7 @@
         html {
             height: 100%;
             margin: 0;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -219,7 +220,7 @@
                 <nav>
                     <div class="link"><a href="https://88potatoes.github.io/projectlist/"><h2>Projects</h2></a></div>
                     <div class="link"><a href="https://ericlang.online/"><h2>Blog</h2></a></div>
-                    <div class="link contact-button"><h2>Contact</h2></div>
+                    <div class="link contact-button"><a href="#contact-form"><h2>Contact</h2></a></div>
                 </nav>
 
             </div>
@@ -227,8 +228,12 @@
         
         <div class="second">
             <div id="form-wrapper">
-                <div class="link" id="contact-success">
-                    <h2>Success</h2>
+                <div class="link" id="contact-finish">
+                    <h2 id="cf-fin-title">Success</h2>
+                    <p id="cf-fin-message"></p>
+                </div>
+                <div id="contact-load" class="link">
+                    <h2>...</h2>
                 </div>
                 <!-- <form id="contact-form" action="http://127.0.0.1:8001/contact" method="POST"> -->
                 <form id="contact-form">
@@ -268,38 +273,19 @@
 
         const contactButton = document.querySelector('.contact-button')
         const contactForm = document.getElementById('contact-form')
-        const contactSuccess = document.getElementById('contact-success')
-        contactSuccess.style.display = 'none';
+        const contactFinish = document.getElementById('contact-finish')
+        const cfFinMessage = document.getElementById('cf-fin-message')
+        const cfFinTitle = document.getElementById('cf-fin-title')
+        const contactLoad = document.getElementById('contact-load')
 
-        contactButton.addEventListener('click', (e) => {
-            console.log('clicked')
-            e.preventDefault();
-            contactForm.scrollIntoView({behavior: "smooth"})
-        })
+        contactFinish.style.display = 'none';
+        contactLoad.style.display = 'none';
 
-        fetch('https://httpbin.org/get')
-        .then(response => {
-            console.log(response)
-            return response.json()
-        })
-        .then(body => {
-            console.log(body)
-        })
-        .catch(error => {console.log(error)})
-
-        fetch('https://httpbin.org/post', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                data1: "wow",
-                data2: "noo"
-            })
-        })
-        .then(response => response.json())
-        .then(body => console.log(body))
-        .catch(error => console.log(error))
+        // contactButton.addEventListener('click', (e) => {
+        //     console.log('clicked')
+        //     e.preventDefault();
+        //     contactForm.scrollIntoView({behavior: "smooth"})
+        // })
 
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -308,7 +294,8 @@
             const wow = Object.fromEntries(formData.entries());
 
             contactForm.style.display = 'none';
-
+            contactLoad.style.display = 'block';
+            
             fetch('http://localhost:8001/contact', {
                 method: 'POST',
                 headers: {
@@ -317,9 +304,16 @@
                 body: JSON.stringify(wow)
             })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .then(() => {
-                contactSuccess.style.display = 'block';
+            .then(data => {
+                if (data.status === 'completed') {
+                    cfFinTitle.innerText = 'Success'
+                    cfFinMessage.innerText = "Email was successfully sent. Have a nice day!"
+                } else if (data.status === 'error') {
+                    cfFinTitle.innerText = 'Error'
+                    cfFinMessage.innerText = "An error occurred. Please try again."
+                }
+                contactLoad.style.display = 'none';
+                contactFinish.style.display = 'block';
             })
             .catch(error => console.log(error))
         })
