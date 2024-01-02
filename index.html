@@ -227,6 +227,9 @@
         
         <div class="second">
             <div id="form-wrapper">
+                <div class="link" id="contact-success">
+                    <h2>Success</h2>
+                </div>
                 <!-- <form id="contact-form" action="http://127.0.0.1:8001/contact" method="POST"> -->
                 <form id="contact-form">
                     <div class="form-item">
@@ -265,6 +268,8 @@
 
         const contactButton = document.querySelector('.contact-button')
         const contactForm = document.getElementById('contact-form')
+        const contactSuccess = document.getElementById('contact-success')
+        contactSuccess.style.display = 'none';
 
         contactButton.addEventListener('click', (e) => {
             console.log('clicked')
@@ -301,8 +306,8 @@
             const formData = new FormData(contactForm);
 
             const wow = Object.fromEntries(formData.entries());
-            console.log(wow)
-            console.log(JSON.stringify(wow))
+
+            contactForm.style.display = 'none';
 
             fetch('http://localhost:8001/contact', {
                 method: 'POST',
@@ -313,6 +318,9 @@
             })
             .then(response => response.json())
             .then(data => console.log(data))
+            .then(() => {
+                contactSuccess.style.display = 'block';
+            })
             .catch(error => console.log(error))
         })
     </script>
