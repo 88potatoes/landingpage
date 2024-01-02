@@ -342,7 +342,14 @@
                 contactLoad.style.display = 'none';
                 contactFinish.style.display = 'block';
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                cfFinTitle.innerText = 'Error'
+                cfFinMessage.innerText = "Server is offline."
+                contactLoad.style.display = 'none';
+                contactFinish.style.display = 'block';
+
+                console.log(error)
+            })
         })
     </script>
 </body>
